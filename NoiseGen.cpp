@@ -24,7 +24,7 @@ namespace Noise
 		n += m_seed;
 		n = (n << 13) ^ n; // bitwise shit 
 		auto nn = (n * (n * n * 60493 + 19990303) + 255) & 0x7fffffff; // what the fuck 
-		return 1.0 - ((double)nn / 1073741824.0); // 1,073,741,824 is an even composite number. It is composed of a single prime number multiplied by itself twenty-nine times. 
+		return 1.0 - ((double)nn / 1073741824.0); // upper threshold
 	}
 
 	double Generator::findNoise2(double x, double z) const
