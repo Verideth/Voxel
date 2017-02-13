@@ -22,7 +22,7 @@ namespace Noise
 	double Generator::findNoise1(int n) const
 	{
 		n += m_seed;
-		n = (n << 13) ^ n; // bitwise shit 
+		n = (n << 13) ^ n; // bitwise stuff :D 
 		auto nn = (n * (n * n * 60493 + 19990303) + 255) & 0x7fffffff; 
 		return 1.0 - ((double)nn / 1073741824.0); // 2^30
 	}
