@@ -23,7 +23,7 @@ namespace Noise
 	{
 		n += m_seed;
 		n = (n << 13) ^ n; // bitwise shit 
-		auto nn = (n * (n * n * 60493 + 19990303) + 255) & 0x7fffffff; // what the fuck 
+		auto nn = (n * (n * n * 60493 + 19990303) + 255) & 0x7fffffff; 
 		return 1.0 - ((double)nn / 1073741824.0); // 2^30
 	}
 
