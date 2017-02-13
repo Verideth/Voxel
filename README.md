@@ -7,7 +7,7 @@ http://steamcommunity.com/profiles/76561198012755595/
 ~3 hours, I hope to spend even more time on it to get a lot done.
 
 # What is voxel?
-Voxel is a very simple voxel engine written entirely in OpenGL. It's going to be an open source game engine. 
+Voxel is a very simple voxel engine written entirely in OpenGL and C++. It's going to be an open source game engine. 
 
 # What have I done so far?
 Well, its just a really simple voxel engine. More is to come, however as of now, it just generates a block mesh. It doesn't even have textures! Just solid colors!
