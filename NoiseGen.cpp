@@ -78,14 +78,16 @@ namespace Noise
 		{
 			auto frequency = pow(2.0, a) / 2.0f;     //This increases the frequency with every loop of the octave.
 			auto amplitude = pow(nf.roughness, a);       //This decreases the amplitude with every loop of the octave.
-			totalValue += noise(((double)newX) * frequency / nf.smoother,
-				((double)newZ) / nf.smoother * frequency)
-				* amplitude;
+			totalValue += noise(((double)newX) * frequency / nf.smoother, ((double)newZ) / nf.smoother * frequency) * amplitude;
 		}
 
 		int height = (int)((((totalValue + 1) / 2.0) * (nf.amplitudeMultiplier * 1.2)) + nf.heightOffset) / 1.005;
 
-		if (height < 3) height = 3;
+		if (height < 3)
+		{
+			height = 3;
+		}
+		
 		return height;
 	}
 
