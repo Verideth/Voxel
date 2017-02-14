@@ -51,46 +51,51 @@ float Shapes::CreateCube(float centerPosX, float centerPosY, float centerPosZ, f
 	GLfloat vertices[] =
 	{
 		// front face
-		centerPosX - halfSideLength, centerPosY + halfSideLength, centerPosZ + halfSideLength, // top left
-		centerPosX + halfSideLength, centerPosY + halfSideLength, centerPosZ + halfSideLength, // top right
-		centerPosX + halfSideLength, centerPosY - halfSideLength, centerPosZ + halfSideLength, // bottom right
-		centerPosX - halfSideLength, centerPosY - halfSideLength, centerPosZ + halfSideLength, // bottom left
+		centerPosX - halfSideLength, centerPosY + halfSideLength, centerPosZ + halfSideLength, //2 top left
+        centerPosX - halfSideLength, centerPosY - halfSideLength, centerPosZ + halfSideLength, //0 bottom left
+        centerPosX + halfSideLength, centerPosY - halfSideLength, centerPosZ + halfSideLength, //1 bottom right
+		centerPosX + halfSideLength, centerPosY + halfSideLength, centerPosZ + halfSideLength, //3 top right
 
 		// back face
-		centerPosX - halfSideLength, centerPosY + halfSideLength, centerPosZ - halfSideLength, // top left
-		centerPosX + halfSideLength, centerPosY + halfSideLength, centerPosZ - halfSideLength, // top right
-		centerPosX + halfSideLength, centerPosY - halfSideLength, centerPosZ - halfSideLength, // bottom right
-		centerPosX - halfSideLength, centerPosY - halfSideLength, centerPosZ - halfSideLength, // bottom left
+		centerPosX - halfSideLength, centerPosY + halfSideLength, centerPosZ - halfSideLength, //6 top left
+        centerPosX + halfSideLength, centerPosY + halfSideLength, centerPosZ - halfSideLength, //7 top right
+        centerPosX + halfSideLength, centerPosY - halfSideLength, centerPosZ - halfSideLength, //5 bottom right
+        centerPosX - halfSideLength, centerPosY - halfSideLength, centerPosZ - halfSideLength, //4 bottom left
 
 		// left face
-		centerPosX - halfSideLength, centerPosY + halfSideLength, centerPosZ + halfSideLength, // top left
-		centerPosX - halfSideLength, centerPosY + halfSideLength, centerPosZ - halfSideLength, // top right
-		centerPosX - halfSideLength, centerPosY - halfSideLength, centerPosZ - halfSideLength, // bottom right
-		centerPosX - halfSideLength, centerPosY - halfSideLength, centerPosZ + halfSideLength, // bottom left
-	
+		centerPosX - halfSideLength, centerPosY + halfSideLength, centerPosZ + halfSideLength, //2 top left
+        centerPosX - halfSideLength, centerPosY + halfSideLength, centerPosZ - halfSideLength, //6 top right
+        centerPosX - halfSideLength, centerPosY - halfSideLength, centerPosZ - halfSideLength, //4 bottom right
+        centerPosX - halfSideLength, centerPosY - halfSideLength, centerPosZ + halfSideLength, //0 bottom left
+
 		// right face
-		centerPosX + halfSideLength, centerPosY + halfSideLength, centerPosZ + halfSideLength, // top left
-		centerPosX + halfSideLength, centerPosY + halfSideLength, centerPosZ - halfSideLength, // top right
-		centerPosX + halfSideLength, centerPosY - halfSideLength, centerPosZ - halfSideLength, // bottom right
-		centerPosX + halfSideLength, centerPosY - halfSideLength, centerPosZ + halfSideLength, // bottom left
+		centerPosX + halfSideLength, centerPosY + halfSideLength, centerPosZ + halfSideLength, //3 top left
+        centerPosX + halfSideLength, centerPosY - halfSideLength, centerPosZ + halfSideLength, //1 bottom left
+        centerPosX + halfSideLength, centerPosY - halfSideLength, centerPosZ - halfSideLength, //5 bottom right
+		centerPosX + halfSideLength, centerPosY + halfSideLength, centerPosZ - halfSideLength, //7 top right
 
 		// top face
-		centerPosX - halfSideLength, centerPosY + halfSideLength, centerPosZ + halfSideLength, // top left
-		centerPosX - halfSideLength, centerPosY + halfSideLength, centerPosZ - halfSideLength, // top right
-		centerPosX + halfSideLength, centerPosY + halfSideLength, centerPosZ - halfSideLength, // bottom right
-		centerPosX + halfSideLength, centerPosY + halfSideLength, centerPosZ + halfSideLength, // bottom left
+		centerPosX - halfSideLength, centerPosY + halfSideLength, centerPosZ + halfSideLength, //2 top left
+        centerPosX + halfSideLength, centerPosY + halfSideLength, centerPosZ + halfSideLength, //3 bottom left
+        centerPosX + halfSideLength, centerPosY + halfSideLength, centerPosZ - halfSideLength, //7 bottom right
+        centerPosX - halfSideLength, centerPosY + halfSideLength, centerPosZ - halfSideLength, //6 top right
 
-		// top face
-		centerPosX - halfSideLength, centerPosY - halfSideLength, centerPosZ + halfSideLength, // top left
-		centerPosX - halfSideLength, centerPosY - halfSideLength, centerPosZ - halfSideLength, // top right
-		centerPosX + halfSideLength, centerPosY - halfSideLength, centerPosZ - halfSideLength, // bottom right
-		centerPosX + halfSideLength, centerPosY - halfSideLength, centerPosZ + halfSideLength  // bottom left
+		// bottom face
+		centerPosX - halfSideLength, centerPosY - halfSideLength, centerPosZ + halfSideLength, //0 top left
+        centerPosX - halfSideLength, centerPosY - halfSideLength, centerPosZ - halfSideLength,  //4 top right
+        centerPosX + halfSideLength, centerPosY - halfSideLength, centerPosZ - halfSideLength, //5 bottom right
+        centerPosX + halfSideLength, centerPosY - halfSideLength, centerPosZ + halfSideLength //1 bottom left
 	};
+
+
 
 	glPolygonMode(GL_FRONT_AND_BACK, GL_TRIANGLES);
 	//glColor3f( colour[0], colour[1], colour[2] );
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glEnableClientState(GL_COLOR_ARRAY);
+	glEnable(GL_CULL_FACE);
+	glCullFace(GL_BACK);
+	glFrontFace(GL_CCW);
 	glVertexPointer(3, GL_FLOAT, 0, vertices);
 	glColorPointer(3, GL_FLOAT, 0, colour);
 
