@@ -8,6 +8,7 @@
 #include "Terrain.h"
 #include <chrono>
 
+
 Terrain::Terrain()
 {
 
@@ -21,21 +22,17 @@ Terrain::~Terrain()
 void Terrain::Init()
 {
 	this->gen.setSeed(this->seed);
+    this->GenerateTerrain();
 }
-
 void Terrain::GenerateTerrain()
 {
-	for (int x = 0; x < TERRAIN_CONST_SIZE * 7; x++)
+	for (int x = 0; x < TERRAIN_CONST_SIZE; x++)
 	{
-		for (int z = 0; z < TERRAIN_CONST_SIZE * 7; z++)
+		for (int z = 0; z < TERRAIN_CONST_SIZE; z++)
 		{
 			this->seed = std::chrono::system_clock::now().time_since_epoch().count(); 
 
-			float value = this->gen.getValue(x, z, TERRAIN_CONST_SIZE, TERRAIN_CONST_SIZE);
-
-			float cube = this->shape.CreateCube(x, value, z, 1.0);
-
-			this->blocks.push_back(value);
+			tArray[x][z] = this->gen.getValue(x, z, TERRAIN_CONST_SIZE, TERRAIN_CONST_SIZE);
 		}
 
 	}
@@ -43,5 +40,14 @@ void Terrain::GenerateTerrain()
 
 void Terrain::Render()
 {
-	this->GenerateTerrain();
+    for (int x = 0; x < TERRAIN_CONST_SIZE; x++)
+    {
+        for (int z = 0; z < TERRAIN_CONST_SIZE; z++)
+        {
+            float cube = this->shape.CreateCube(x, tArray[x][z] - 150, z, 1.0);
+
+            this->blocks.push_back(tArray[x][z]);
+        }
+    }
+
 }
