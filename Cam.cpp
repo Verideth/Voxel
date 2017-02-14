@@ -65,6 +65,7 @@ void Camera::Control(float movevel, float mousevel, bool mi)
 	{
 		int MidX = 320;
 		int MidY = 240;
+        float velSlow = movevel;
 
 		SDL_ShowCursor(SDL_DISABLE);
 
@@ -79,6 +80,11 @@ void Camera::Control(float movevel, float mousevel, bool mi)
 
 		SDL_WarpMouseInWindow(theGame.window, MidX, MidY);
 		const Uint8* state = SDL_GetKeyboardState(NULL);
+
+        if(state[SDL_SCANCODE_LSHIFT])
+            movevel *= 2;
+        else
+            movevel = velSlow;
 
 		if (state[SDL_SCANCODE_W])
 		{
