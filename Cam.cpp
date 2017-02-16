@@ -24,22 +24,22 @@ Camera::Camera()
 
 void Camera::LockCamera()
 {
-	if (camPitch>90)
+	if (camPitch > 90)
 	{
 		camPitch = 90;
 	}
 
-	if (camPitch<-90)
+	if (camPitch < -90)
 	{
 		camPitch = -90;
 	}
 
-	if (camYaw<0.0)
+	if (camYaw < 0.0)
 	{
 		camYaw += 360.0;
 	}
 
-	if (camYaw>360.0)
+	if (camYaw > 360.0)
 	{
 		camYaw -= 360;
 	}
