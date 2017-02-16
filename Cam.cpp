@@ -81,7 +81,7 @@ void Camera::Control(float movevel, float mousevel, bool mi)
 		SDL_WarpMouseInWindow(theGame.window, MidX, MidY);
 		const Uint8* state = SDL_GetKeyboardState(NULL);
 
-        if(state[SDL_SCANCODE_LSHIFT])
+        if(state[SDL_SCANCODE_LSHIFT]) // thanks @nutcake for this
             movevel *= 2;
         else
             movevel = velSlow;
