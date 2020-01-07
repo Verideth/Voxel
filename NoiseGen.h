@@ -1,8 +1,6 @@
 #pragma once
 
-/*
-	Thank you to my friend who helped me out with some noise generation. Some credits to Hopson.
-*/
+// Thank you to my friend who helped me out with some noise generation. Credits to Hopson
 
 #include <cstdint>
 
